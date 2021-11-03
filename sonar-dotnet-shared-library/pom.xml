@@ -39,7 +39,7 @@
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.7</version>
+      <version>2.8.9</version>
     </dependency>
 
     <dependency>
@@ -106,15 +106,15 @@
               <target>
                 <property name="proto.path" location="${project.basedir}/../sonaranalyzer-dotnet/src/SonarAnalyzer.Common/Protobuf"/>
                 <fileset id="fileset" dir="${proto.path}">
-                  <include name="*.proto" />
+                  <include name="*.proto"/>
                 </fileset>
-                <pathconvert refid="fileset" property="protos" pathsep=" " />
-                <mkdir dir="${project.build.directory}/generated-sources/protobuf" />
-                <chmod file="${protobuf.compiler}" perm="u+x" />
+                <pathconvert refid="fileset" property="protos" pathsep=" "/>
+                <mkdir dir="${project.build.directory}/generated-sources/protobuf"/>
+                <chmod file="${protobuf.compiler}" perm="u+x"/>
                 <exec failonerror="true" executable="${protobuf.compiler}">
-                  <arg value="--proto_path=${proto.path}" />
-                  <arg value="--java_out=${project.build.directory}/generated-sources/protobuf" />
-                  <arg line="${protos}" />
+                  <arg value="--proto_path=${proto.path}"/>
+                  <arg value="--java_out=${project.build.directory}/generated-sources/protobuf"/>
+                  <arg line="${protos}"/>
                 </exec>
               </target>
             </configuration>
