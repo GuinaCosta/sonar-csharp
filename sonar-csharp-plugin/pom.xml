@@ -63,7 +63,7 @@
   </scm>
 
   <properties>
-    <sonar.version>5.6</sonar.version>
+    <sonar.version>7.4</sonar.version>
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <sonar.pluginName>C#</sonar.pluginName>
     <sonar.pluginClass>org.sonar.plugins.csharp.CSharpPlugin</sonar.pluginClass>
@@ -205,8 +205,7 @@
                         <include name="Google.Protobuf.dll"/>
                       </fileset>
                     </copy>
-                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarAnalyzer-${project.version}.zip"
-                         basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp"/>
+                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarAnalyzer-${project.version}.zip" basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp"/>
 
                     <!-- SQALE XML in sslr requires a resource to read from -->
                     <copy todir="${sonarAnalyzer.workDirectory}/org/sonar/plugins/csharp">
@@ -219,10 +218,9 @@
 
                     <!-- This zip is required by old versions of the Scanner for MSBuild. Leaving it empty allows to have the
                          scanner failing with a nice message -->
-                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarQube.MSBuild.Runner.Implementation.zip"
-                         basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp" excludes="*.dll" whenempty="create" />
+                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarQube.MSBuild.Runner.Implementation.zip" basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp" excludes="*.dll" whenempty="create"/>
 
-                    <echo file="${sonarAnalyzer.workDirectory}/static/version.txt" message="${project.version}" encoding="utf-8" />
+                    <echo file="${sonarAnalyzer.workDirectory}/static/version.txt" message="${project.version}" encoding="utf-8"/>
                   </tasks>
                 </configuration>
                 <goals>
@@ -314,21 +312,18 @@
                   <exportAntProperties>true</exportAntProperties>
                   <tasks>
                     <!-- ITs requires the SonarAnalyzer-VERSION.zip to be present so don't remove these lines -->
-                    <unzip src="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp-${analyzer.version}.nupkg"
-                           dest="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp/" />
-                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarAnalyzer-${project.version}.zip"
-                         basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp"/>
+                    <unzip src="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp-${analyzer.version}.nupkg" dest="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp/"/>
+                    <zip destfile="${sonarAnalyzer.workDirectory}/static/SonarAnalyzer-${project.version}.zip" basedir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.CSharp"/>
 
                     <!-- SQALE XML in sslr requires a resource to read from -->
-                    <unzip src="${sonarAnalyzer.workDirectory}/SonarAnalyzer.RuleDocGenerator.CSharp-${analyzer.version}.nupkg"
-                           dest="${sonarAnalyzer.workDirectory}/SonarAnalyzer.RuleDocGenerator.CSharp/" />
+                    <unzip src="${sonarAnalyzer.workDirectory}/SonarAnalyzer.RuleDocGenerator.CSharp-${analyzer.version}.nupkg" dest="${sonarAnalyzer.workDirectory}/SonarAnalyzer.RuleDocGenerator.CSharp/"/>
                     <copy todir="${sonarAnalyzer.workDirectory}/org/sonar/plugins/csharp">
                         <fileset dir="${sonarAnalyzer.workDirectory}/SonarAnalyzer.RuleDocGenerator.CSharp/xml">
                         <include name="*.xml"/>
                       </fileset>
                     </copy>
 
-                    <echo file="${sonarAnalyzer.workDirectory}/static/version.txt" message="${project.version}" encoding="utf-8" />
+                    <echo file="${sonarAnalyzer.workDirectory}/static/version.txt" message="${project.version}" encoding="utf-8"/>
                   </tasks>
                 </configuration>
                 <goals>
