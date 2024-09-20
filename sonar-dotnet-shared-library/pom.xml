@@ -15,7 +15,7 @@
 
   <properties>
     <sonar.version>6.3</sonar.version>
-    <protobuf.version>3.1.0</protobuf.version>
+    <protobuf.version>3.25.5</protobuf.version>
     <protobuf.compiler>${settings.localRepository}/com/google/protobuf/protoc/${protobuf.version}/protoc-${protobuf.version}-${os.detected.classifier}.exe</protobuf.compiler>
     <!-- used for deployment to SonarSource Artifactory -->
     <gitRepositoryName>sonar-dotnet-shared-library</gitRepositoryName>
@@ -106,15 +106,15 @@
               <target>
                 <property name="proto.path" location="${project.basedir}/../sonaranalyzer-dotnet/src/SonarAnalyzer.Common/Protobuf"/>
                 <fileset id="fileset" dir="${proto.path}">
-                  <include name="*.proto" />
+                  <include name="*.proto"/>
                 </fileset>
-                <pathconvert refid="fileset" property="protos" pathsep=" " />
-                <mkdir dir="${project.build.directory}/generated-sources/protobuf" />
-                <chmod file="${protobuf.compiler}" perm="u+x" />
+                <pathconvert refid="fileset" property="protos" pathsep=" "/>
+                <mkdir dir="${project.build.directory}/generated-sources/protobuf"/>
+                <chmod file="${protobuf.compiler}" perm="u+x"/>
                 <exec failonerror="true" executable="${protobuf.compiler}">
-                  <arg value="--proto_path=${proto.path}" />
-                  <arg value="--java_out=${project.build.directory}/generated-sources/protobuf" />
-                  <arg line="${protos}" />
+                  <arg value="--proto_path=${proto.path}"/>
+                  <arg value="--java_out=${project.build.directory}/generated-sources/protobuf"/>
+                  <arg line="${protos}"/>
                 </exec>
               </target>
             </configuration>
